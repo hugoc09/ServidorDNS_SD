@@ -7,6 +7,8 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
 import Entidades.IP;
+import Negocios.Controle;
+import Negocios.ControleDNS;
 
 public class Procura_Serv implements Runnable{
 	
@@ -14,6 +16,7 @@ public class Procura_Serv implements Runnable{
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgRecebido;
+	private ControleDNS controle;
 	
 	private boolean inicializado;
 
@@ -23,19 +26,18 @@ public class Procura_Serv implements Runnable{
 	
 	public Procura_Serv() throws Exception{
 		
+		this.procServSocket = new DatagramSocket(); 
+		this.procServSocket.setBroadcast(true);
+		controle = new Controle();
+		
 		inicializado = false;
 		executando   = false;
-		
-		//open();
+	
+		open();
 	}
 	
 	private void open() {
 		try {
-			
-			this.procServSocket = new DatagramSocket(); 
-			this.procServSocket.setBroadcast(true);
-	
-			enviarMsg();
 			
 			inicializado = true;
 		}
@@ -67,7 +69,7 @@ public class Procura_Serv implements Runnable{
 	}
 	
 	public void start() {
-		open();
+		enviarMsg();
 		
 		if (!inicializado || executando) {
 			return;
@@ -118,13 +120,8 @@ public class Procura_Serv implements Runnable{
 		 	
 		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
 		 	
-		 	if(count==0){
-		 		Servidor_DNS.ips.clear(); 
-		 	}
-		 	System.out.println(pkgRecebido.getAddress() + "." + pkgRecebido.getPort() );
-		 	
-		 	Servidor_DNS.ips.add(a);
-		 	count++;	
+		 	controle.pegarIp(a, count);
+		 		
 		} catch (SocketTimeoutException g) {
 			
 			System.out.println("Servidores On: " + count);

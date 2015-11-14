@@ -2,11 +2,9 @@ package Servidor_DNS;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import Entidades.IP;
 
@@ -15,15 +13,13 @@ import Entidades.IP;
 public class Servidor_DNS implements Runnable{
 	
 	private DatagramSocket servidorSocket;
-
-	private Procura_Serv procura_Serv;
 	 
 	private DatagramPacket pkgRecebido;
 
 	private boolean inicializado;
 	private boolean executando;
 	
-	static List<IP> ips;
+	protected List<IP> ips;
 
 	private Thread  thread;
 	
@@ -39,27 +35,16 @@ public class Servidor_DNS implements Runnable{
 	private void open()throws Exception{
 		servidorSocket = new DatagramSocket(2526);
 		
-		this.procura_Serv = new Procura_Serv();
-		this.procura_Serv.start();
-		
 		inicializado = true;
 	}
 	
 	private void close() {
-		
-		try {
-			procura_Serv.stop();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 	
 		try {
 			servidorSocket.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		procura_Serv=null;
 		
 		servidorSocket = null;
 		
@@ -121,25 +106,17 @@ public class Servidor_DNS implements Runnable{
 		close();
 		
 	}
+
+	public List<IP> getIps() {
+		return ips;
+	}
+
+	public void setIps(List<IP> ips) {
+		this.ips = ips;
+	}
 	
-	public static void main(String[] args) throws Exception {
-		try {
-			System.out.println("Iniciando servidor DNS.");
-			Servidor_DNS servidor_DNS = new Servidor_DNS();
-			servidor_DNS.start();
-			
-			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
-			new Scanner(System.in).nextLine();
-			
-			
-			System.out.println("Encerrando servidor DNS.");
-			servidor_DNS.stop();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
+	public void setIp(IP ip){
+		this.ips.add(ip);
 	}
 
 }
