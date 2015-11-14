@@ -2,14 +2,11 @@ package Negocios;
 
 
 import Entidades.IP;
-import Redes.Procura_Serv;
 import Redes.Servidor_DNS;
 
-public class Controle implements ControleDNS {
+public class Controle  {
 
 	private Servidor_DNS servidorDNS;
-
-	
 	
 	public Controle() {
 		
@@ -23,7 +20,7 @@ public class Controle implements ControleDNS {
 	}
 
 
-	@Override
+
 	public void close() {
 		
 		try {
@@ -37,7 +34,7 @@ public class Controle implements ControleDNS {
 	}
 
 
-	@Override
+	
 	public String enviarIp() {
 		
 		if(servidorDNS.getIps().isEmpty()){
@@ -49,16 +46,15 @@ public class Controle implements ControleDNS {
 	}
 
 
-	@Override
-	public void pegarIp(IP a, int count) {
-		
+
+	public static void pegarIp(IP a, int count) {
 		
 	 	if(count==0){
-	 		this.servidorDNS.getIps().clear();
+	 		Servidor_DNS.ips.clear();
 	 	}
 	 	
 	 	System.out.println(a.getIp() + "." + a.getPorta());
-	 		this.servidorDNS.setIp(a);
+	 	Servidor_DNS.ips.add(a);
 	 		count++;
 		
 	}

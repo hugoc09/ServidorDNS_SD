@@ -20,7 +20,7 @@ public class Servidor_DNS implements Runnable{
 	private boolean inicializado;
 	private boolean executando;
 	
-	protected List<IP> ips;
+	public static List<IP> ips;
 
 	private Thread  thread;
 	
@@ -121,12 +121,5 @@ public class Servidor_DNS implements Runnable{
 		return ips;
 	}
 
-	public void setIps(List<IP> ips) {
-		this.ips = ips;
-	}
-	
-	public void setIp(IP ip){
-		this.ips.add(ip);
-	}
 
 }

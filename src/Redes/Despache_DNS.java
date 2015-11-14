@@ -4,7 +4,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 import Negocios.Controle;
-import Negocios.ControleDNS;
+
 
 public class Despache_DNS implements Runnable{
 	
@@ -12,7 +12,7 @@ public class Despache_DNS implements Runnable{
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgCliente;
-	private ControleDNS controle;
+	private Controle controle;
 
 	private boolean inicializado;
 	private boolean executando;

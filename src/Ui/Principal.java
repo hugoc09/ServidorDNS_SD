@@ -3,7 +3,6 @@ package Ui;
 import java.util.Scanner;
 
 import Negocios.Controle;
-import Negocios.ControleDNS;
 
 public class Principal {
 
@@ -11,7 +10,7 @@ public class Principal {
 		
 			try {
 			
-			ControleDNS con = new Controle();
+			Controle con = new Controle();
 			
 			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor.");
 			new Scanner(System.in).nextLine();
