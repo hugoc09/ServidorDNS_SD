@@ -7,7 +7,7 @@ public class Pesquisa {
 	
 	public String enviarIp() {
 		
-		if(Servidor_DNS.ips.isEmpty()){
+		if(!Servidor_DNS.ips.isEmpty()){
 			String msgEnviada = Servidor_DNS.ips.get(0).getIp() + ";" + Servidor_DNS.ips.get(0).getPorta() + ";";
 			return msgEnviada;
 		}
