@@ -1,4 +1,4 @@
-package Servidor_DNS;
+package Entidades;
 
 import java.net.InetAddress;
 

@@ -6,6 +6,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
+import Entidades.IP;
+
 public class Procura_Serv implements Runnable{
 	
 	private DatagramSocket procServSocket;
