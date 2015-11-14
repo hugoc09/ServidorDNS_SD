@@ -117,9 +117,4 @@ public class Servidor_DNS implements Runnable{
 		
 	}
 
-	public List<IP> getIps() {
-		return ips;
-	}
-
-
 }

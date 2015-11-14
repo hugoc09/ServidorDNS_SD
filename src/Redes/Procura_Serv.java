@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
 import Entidades.IP;
-import Negocios.Controle;
+import Negocios.Pesquisa;
 
 public class Procura_Serv implements Runnable{
 	
@@ -15,6 +15,7 @@ public class Procura_Serv implements Runnable{
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgRecebido;
+	Pesquisa pesquisa;
 	
 	private boolean inicializado;
 
@@ -26,6 +27,7 @@ public class Procura_Serv implements Runnable{
 		
 		this.procServSocket = procServSocket; 
 		this.procServSocket.setBroadcast(true);
+		this.pesquisa = new Pesquisa();
 		
 		inicializado = false;
 		executando   = false;
@@ -117,7 +119,7 @@ public class Procura_Serv implements Runnable{
 		 	
 		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
 		 	
-		 	Controle.pegarIp(a, count);
+		 	pesquisa.pegarIp(a, count);
 		 		
 		} catch (SocketTimeoutException g) {
 			
