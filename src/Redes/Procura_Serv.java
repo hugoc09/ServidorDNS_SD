@@ -1,4 +1,4 @@
-package Servidor_DNS;
+package Redes;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -24,11 +24,11 @@ public class Procura_Serv implements Runnable{
 
 	private Thread  thread;
 	
-	public Procura_Serv() throws Exception{
+	public Procura_Serv(DatagramSocket procServSocket) throws Exception{
 		
-		this.procServSocket = new DatagramSocket(); 
+		this.procServSocket = procServSocket; 
 		this.procServSocket.setBroadcast(true);
-		controle = new Controle();
+		//controle = new Controle();
 		
 		inicializado = false;
 		executando   = false;

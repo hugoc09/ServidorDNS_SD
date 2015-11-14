@@ -1,4 +1,4 @@
-package Servidor_DNS;
+package Redes;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -22,7 +22,7 @@ public class Despache_DNS implements Runnable{
 	public Despache_DNS(DatagramSocket datagramSocket, DatagramPacket pkgRecebidoParamentro) {
 		this.servidorSocket = datagramSocket;
 		this.pkgCliente = pkgRecebidoParamentro;
-		controle = new Controle();
+		//controle = new Controle();
 		
 		inicializado = false;
 		executando =false;
