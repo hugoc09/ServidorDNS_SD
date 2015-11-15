@@ -23,9 +23,9 @@ public class Procura_Serv implements Runnable{
 
 	private Thread  thread;
 	
-	public Procura_Serv(DatagramSocket procServSocket) throws Exception{
+	public Procura_Serv() throws Exception{
 		
-		this.procServSocket = procServSocket; 
+		this.procServSocket = new DatagramSocket(); 
 		this.procServSocket.setBroadcast(true);
 		this.pesquisa = new Pesquisa();
 		
@@ -37,7 +37,6 @@ public class Procura_Serv implements Runnable{
 	
 	private void open() {
 		try {
-			
 			inicializado = true;
 		}
 		catch (Exception e) {
@@ -104,7 +103,6 @@ public class Procura_Serv implements Runnable{
 	
 	@Override
 	public void run() {
-		int count=0 ;
 		
 		while(executando){
 	
@@ -113,29 +111,29 @@ public class Procura_Serv implements Runnable{
 	 	
 		try {
 			
-			procServSocket.setSoTimeout(5000);
+			procServSocket.setSoTimeout(3000);
 		 	
 		 	procServSocket.receive(pkgRecebido); 
 		 	
 		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
 		 	
-		 	pesquisa.pegarIp(a, count);
-		 		
+		 	pesquisa.pegarIp(a);
+			
 		} catch (SocketTimeoutException g) {
 			
-			System.out.println("Servidores On: " + count);
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
+				enviarMsg();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			enviarMsg();
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 			
 	}
-		
 		close();	
 	}
 

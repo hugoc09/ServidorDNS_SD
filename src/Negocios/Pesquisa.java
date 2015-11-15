@@ -15,15 +15,10 @@ public class Pesquisa {
 		return null;
 	}
 
-	public void pegarIp(IP a, int count) {
-		
-	 	if(count==0){
-	 		Servidor_DNS.ips.clear();
-	 	}
+	public void pegarIp(IP a) {
 	 	
 	 	System.out.println(a.getIp() + "." + a.getPorta());
 	 	Servidor_DNS.ips.add(a);
-	 		count++;
 		
 	}
 	

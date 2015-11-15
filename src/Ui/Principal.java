@@ -12,11 +12,11 @@ public class Principal {
 			
 			Controle con = new Controle();
 			
-			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor.");
+			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
 			new Scanner(System.in).nextLine();
 			
 			
-			System.out.println("Encerrando servidor.");
+			System.out.println("Encerrando servidor DNS.");
 			con.close();
 			
 		} catch (Exception e) {

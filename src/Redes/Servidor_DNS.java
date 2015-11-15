@@ -36,7 +36,7 @@ public class Servidor_DNS implements Runnable{
 	private void open()throws Exception{
 		servidorSocket = new DatagramSocket(2526);
 		
-		procuraServ = new Procura_Serv(servidorSocket);
+		procuraServ = new Procura_Serv();
 		procuraServ.start();
 		
 		inicializado = true;
