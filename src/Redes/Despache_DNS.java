@@ -3,7 +3,6 @@ package Redes;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
-import Negocios.Controle;
 import Negocios.Pesquisa;
 
 
@@ -13,7 +12,7 @@ public class Despache_DNS implements Runnable{
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgCliente;
-	private Pesquisa pesquisa;
+	private Control controle;
 
 	private boolean inicializado;
 	private boolean executando;
@@ -23,7 +22,7 @@ public class Despache_DNS implements Runnable{
 	public Despache_DNS(DatagramSocket datagramSocket, DatagramPacket pkgRecebidoParamentro) {
 		this.servidorSocket = datagramSocket;
 		this.pkgCliente = pkgRecebidoParamentro;
-		this.pesquisa = new Pesquisa();
+		this.controle = new Pesquisa();
 		
 		inicializado = false;
 		executando =false;
@@ -46,6 +45,7 @@ public class Despache_DNS implements Runnable{
 		}
 		
 		servidorSocket = null;
+		controle = null;
 		
 		inicializado = false;
 		executando = false;
@@ -76,7 +76,7 @@ public class Despache_DNS implements Runnable{
 	public void run() {
 		
 		try {
-			String msgEnviada = pesquisa.enviarIp();
+			String msgEnviada = controle.enviarIp();
 			
 			if(msgEnviada!=null){
 			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), pkgCliente.getAddress(), pkgCliente.getPort());

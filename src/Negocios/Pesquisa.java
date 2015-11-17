@@ -1,9 +1,10 @@
 package Negocios;
 
 import Entidades.IP;
+import Redes.Control;
 import Redes.Servidor_DNS;
 
-public class Pesquisa {
+public class Pesquisa implements Control{
 	
 	public String enviarIp() {
 		

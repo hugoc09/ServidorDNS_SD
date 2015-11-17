@@ -2,22 +2,22 @@ package Ui;
 
 import java.util.Scanner;
 
-import Negocios.Controle;
+import Redes.Servidor_DNS;
 
-public class Principal {
-
+public class Principal {	
+	
 	public static void main(String[] args) {
 		
 			try {
-			
-			Controle con = new Controle();
+			Servidor_DNS servidorDNS = new Servidor_DNS();
+			servidorDNS.start();
 			
 			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
 			new Scanner(System.in).nextLine();
 			
 			
 			System.out.println("Encerrando servidor DNS.");
-			con.close();
+			servidorDNS.stop();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

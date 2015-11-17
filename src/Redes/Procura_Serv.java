@@ -15,7 +15,7 @@ public class Procura_Serv implements Runnable{
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgRecebido;
-	Pesquisa pesquisa;
+	private Control contole;
 	
 	private boolean inicializado;
 
@@ -27,7 +27,7 @@ public class Procura_Serv implements Runnable{
 		
 		this.procServSocket = new DatagramSocket(); 
 		this.procServSocket.setBroadcast(true);
-		this.pesquisa = new Pesquisa();
+		this.contole = new Pesquisa();
 		
 		inicializado = false;
 		executando   = false;
@@ -89,7 +89,7 @@ public class Procura_Serv implements Runnable{
 	private void enviarMsg(){
 		
 		try {
-			
+			System.out.println("Msg enviada!");
 			InetAddress addr = InetAddress.getByName("255.255.255.255");
 			String msgEnviada = "ola";
 			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), addr, 2525);
@@ -117,12 +117,13 @@ public class Procura_Serv implements Runnable{
 		 	
 		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
 		 	
-		 	pesquisa.pegarIp(a);
+		 	contole.pegarIp(a);
 			
 		} catch (SocketTimeoutException g) {
 			
 			try {
-				Thread.sleep(3000);
+				System.out.println("Dormindo...");
+				Thread.sleep(5000);
 				enviarMsg();
 			} catch (Exception e) {
 				e.printStackTrace();
