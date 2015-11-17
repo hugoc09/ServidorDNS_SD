@@ -15,8 +15,7 @@ public class Principal {
 			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
 			new Scanner(System.in).nextLine();
 			
-			
-			System.out.println("Encerrando servidor DNS.");
+			System.out.println("Encerrando Servidor DNS.");
 			servidorDNS.stop();
 			
 		} catch (Exception e) {

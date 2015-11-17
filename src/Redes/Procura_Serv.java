@@ -105,7 +105,8 @@ public class Procura_Serv implements Runnable{
 	public void run() {
 		
 		while(executando){
-	
+		
+		
 		byte[] recebeDados = new byte[1024];
 		pkgRecebido = new DatagramPacket(recebeDados, recebeDados.length);
 	 	
