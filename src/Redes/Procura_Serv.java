@@ -106,6 +106,7 @@ public class Procura_Serv implements Runnable{
 	
 	@Override
 	public void run() {
+		int cont=0;
 		
 		while(executando){
 		
@@ -114,25 +115,26 @@ public class Procura_Serv implements Runnable{
 		pkgRecebido = new DatagramPacket(recebeDados, recebeDados.length);
 	 	
 		try {
-			
 			procServSocket.setSoTimeout(3000);
 		 	
 		 	procServSocket.receive(pkgRecebido); 
 		 	
 		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
 		 	
-		 	contole.pegarIp(a);
-			
+		 	contole.pegarIp(a, cont);
+		 	cont++;
+		 	
 		} catch (SocketTimeoutException g) {
-			
+			cont = 0;
 			try {
+				if(executando){
 				System.out.println("Dormindo...");
 				Thread.sleep(5000);
 				enviarMsg();
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 			
 		} catch (IOException e) {
 			e.printStackTrace();
