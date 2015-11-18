@@ -13,7 +13,6 @@ import Entidades.IP;
 public class Servidor_DNS implements Runnable{
 	
 	private DatagramSocket servidorSocket;
-	private Procura_Serv procuraServ;
 	 
 	private DatagramPacket pkgRecebido;
 
@@ -36,19 +35,10 @@ public class Servidor_DNS implements Runnable{
 	private void open()throws Exception{
 		servidorSocket = new DatagramSocket(2526);
 		
-		procuraServ = new Procura_Serv();
-		procuraServ.start();
-		
 		inicializado = true;
 	}
 	
 	private void close() {
-		
-		try {
-			procuraServ.stop();
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 	
 		try {
 			servidorSocket.close();

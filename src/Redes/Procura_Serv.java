@@ -24,9 +24,6 @@ public class Procura_Serv implements Runnable{
 	private Thread  thread;
 	
 	public Procura_Serv() throws Exception{
-		
-		this.procServSocket = new DatagramSocket(); 
-		this.procServSocket.setBroadcast(true);
 		this.contole = new Pesquisa();
 		
 		inicializado = false;
@@ -37,6 +34,9 @@ public class Procura_Serv implements Runnable{
 	
 	private void open() {
 		try {
+			this.procServSocket = new DatagramSocket(); 
+			this.procServSocket.setBroadcast(true);
+			
 			inicializado = true;
 		}
 		catch (Exception e) {
@@ -57,7 +57,9 @@ public class Procura_Serv implements Runnable{
 
 		pkgEnviado   = null;
 		pkgRecebido  = null;
+		contole = null;
 		procServSocket = null;
+		
 
 		inicializado = false;
 		executando   = false;
@@ -89,11 +91,12 @@ public class Procura_Serv implements Runnable{
 	private void enviarMsg(){
 		
 		try {
-			System.out.println("Msg enviada!");
 			InetAddress addr = InetAddress.getByName("255.255.255.255");
-			String msgEnviada = "ola";
-			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), addr, 2525);
+			byte[] msgEnviada = new byte[1024];
+			pkgEnviado = new DatagramPacket(msgEnviada, msgEnviada.length, addr, 2525);
 			this.procServSocket.send(pkgEnviado);
+			
+			System.out.println(" Brodcast servidores feito!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

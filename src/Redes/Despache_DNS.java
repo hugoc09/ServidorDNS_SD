@@ -31,18 +31,11 @@ public class Despache_DNS implements Runnable{
 	}
 	
 	private void open(){
-			
+		
 		inicializado = true;	
 	}
 
-	//Não está sendo usado
 	private void close() {
-		
-		try {
-			servidorSocket.close();
-		} catch (Exception e) {
-			System.out.println(e);			
-		}
 		
 		servidorSocket = null;
 		controle = null;
@@ -77,18 +70,17 @@ public class Despache_DNS implements Runnable{
 		
 		try {
 			String msgEnviada = controle.enviarIp();
-			
 			if(msgEnviada!=null){
 			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), pkgCliente.getAddress(), pkgCliente.getPort());
 			servidorSocket.send(pkgEnviado);
 			}else{
-				System.out.println("Nada enviado! <DNS>");
+			System.out.println(" Nenhum Servidor tradução disponivel! <DNS> ");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//close();
+		close();
 	}
 
 }
