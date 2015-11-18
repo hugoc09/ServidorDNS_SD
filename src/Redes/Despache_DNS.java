@@ -15,7 +15,7 @@ public class Despache_DNS implements Runnable{
 	private Control controle;
 
 	private boolean inicializado;
-	private boolean executando;
+	//private boolean executando;
 
 	private Thread  thread;
 	
@@ -25,14 +25,14 @@ public class Despache_DNS implements Runnable{
 		this.controle = new Pesquisa();
 		
 		inicializado = false;
-		executando =false;
+		//executando =false;
 		
 		open();
 	}
 	
 	private void open(){
+		inicializado = true;
 		
-		inicializado = true;	
 	}
 
 	private void close() {
@@ -41,24 +41,24 @@ public class Despache_DNS implements Runnable{
 		controle = null;
 		
 		inicializado = false;
-		executando = false;
+		//executando = false;
 		
 		thread = null;
 	}
 	
 	public void start() {
-		if(!inicializado || executando){
+		if(!inicializado){  //executando
 			return;
 		}
 		
-		executando = true;
+		//executando = true;
 		thread = new Thread(this);
 		thread.start();
 	}
 	
 	public void stop() throws Exception {
 		
-		executando = false;
+		//executando = false;
 		
 		if(thread!=null){
 		thread.join();
@@ -69,6 +69,7 @@ public class Despache_DNS implements Runnable{
 	public void run() {
 		
 		try {
+			
 			String msgEnviada = controle.enviarIp();
 			if(msgEnviada!=null){
 			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), pkgCliente.getAddress(), pkgCliente.getPort());

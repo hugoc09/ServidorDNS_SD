@@ -18,7 +18,6 @@ public class Procura_Serv implements Runnable{
 	private Control contole;
 	
 	private boolean inicializado;
-
 	private boolean executando;
 
 	private Thread  thread;
@@ -96,7 +95,7 @@ public class Procura_Serv implements Runnable{
 			pkgEnviado = new DatagramPacket(msgEnviada, msgEnviada.length, addr, 2525);
 			this.procServSocket.send(pkgEnviado);
 			
-			System.out.println(" Brodcast servidores feito!");
+			System.out.println("Brodcast servidores feito!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,7 +108,6 @@ public class Procura_Serv implements Runnable{
 		int cont=0;
 		
 		while(executando){
-		
 		
 		byte[] recebeDados = new byte[1024];
 		pkgRecebido = new DatagramPacket(recebeDados, recebeDados.length);
@@ -127,9 +125,9 @@ public class Procura_Serv implements Runnable{
 		} catch (SocketTimeoutException g) {
 			cont = 0;
 			try {
-				if(executando){
 				System.out.println("Dormindo...");
 				Thread.sleep(5000);
+				if(executando){
 				enviarMsg();
 				}
 			} catch (Exception e) {
