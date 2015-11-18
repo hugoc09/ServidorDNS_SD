@@ -91,8 +91,8 @@ public class Servidor_DNS implements Runnable{
 			servidorSocket.receive(pkgRecebido);
 			System.out.println("Pedido recebido.");
 			
-			Despache_DNS despache_DNS = new Despache_DNS(servidorSocket, pkgRecebido);
-			despache_DNS.start();
+			Resposta_DNS resposta_DNS = new Resposta_DNS(servidorSocket, pkgRecebido);
+			resposta_DNS.start();
 			
 			}catch(SocketTimeoutException e){
 				// ignorar

@@ -6,16 +6,12 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
-import Entidades.IP;
-import Negocios.Pesquisa;
-
 public class Procura_Serv implements Runnable{
 	
 	private DatagramSocket procServSocket;
 	 
 	private DatagramPacket pkgEnviado;
 	private DatagramPacket pkgRecebido;
-	private Control contole;
 	
 	private boolean inicializado;
 	private boolean executando;
@@ -23,7 +19,6 @@ public class Procura_Serv implements Runnable{
 	private Thread  thread;
 	
 	public Procura_Serv() throws Exception{
-		this.contole = new Pesquisa();
 		
 		inicializado = false;
 		executando   = false;
@@ -56,7 +51,6 @@ public class Procura_Serv implements Runnable{
 
 		pkgEnviado   = null;
 		pkgRecebido  = null;
-		contole = null;
 		procServSocket = null;
 		
 
@@ -117,11 +111,10 @@ public class Procura_Serv implements Runnable{
 		 	
 		 	procServSocket.receive(pkgRecebido); 
 		 	
-		 	IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
+		 	Guarda_Serv guarda_Serv = new Guarda_Serv(pkgRecebido, cont);
+		 	guarda_Serv.start();
 		 	
-		 	contole.pegarIp(a, cont);
-		 	cont++;
-		 	
+		 	cont++; 	
 		} catch (SocketTimeoutException g) {
 			cont = 0;
 			try {

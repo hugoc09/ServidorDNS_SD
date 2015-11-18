@@ -20,10 +20,11 @@ public class Pesquisa implements Control{
 	 	
 		if(cont == 0){
 			Servidor_DNS.ips.clear();
-		}else{
+		}
+		
 	 	System.out.println(a.getIp() + "." + a.getPorta());
 	 	Servidor_DNS.ips.add(a);
-		}
+		
 		
 	}
 	

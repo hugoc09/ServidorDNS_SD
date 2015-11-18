@@ -6,12 +6,12 @@ import java.net.DatagramSocket;
 import Negocios.Pesquisa;
 
 
-public class Despache_DNS implements Runnable{
+public class Resposta_DNS implements Runnable{
 	
 	private DatagramSocket servidorSocket;
 	 
 	private DatagramPacket pkgEnviado;
-	private DatagramPacket pkgCliente;
+	private DatagramPacket pkgRecebido;
 	private Control controle;
 
 	private boolean inicializado;
@@ -19,9 +19,9 @@ public class Despache_DNS implements Runnable{
 
 	private Thread  thread;
 	
-	public Despache_DNS(DatagramSocket datagramSocket, DatagramPacket pkgRecebidoParamentro) {
+	public Resposta_DNS(DatagramSocket datagramSocket, DatagramPacket pkgRecebidoParamentro) {
 		this.servidorSocket = datagramSocket;
-		this.pkgCliente = pkgRecebidoParamentro;
+		this.pkgRecebido = pkgRecebidoParamentro;
 		this.controle = new Pesquisa();
 		
 		inicializado = false;
@@ -72,7 +72,7 @@ public class Despache_DNS implements Runnable{
 			
 			String msgEnviada = controle.enviarIp();
 			if(msgEnviada!=null){
-			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), pkgCliente.getAddress(), pkgCliente.getPort());
+			pkgEnviado = new DatagramPacket(msgEnviada.getBytes(),msgEnviada.length(), pkgRecebido.getAddress(), pkgRecebido.getPort());
 			servidorSocket.send(pkgEnviado);
 			}else{
 			System.out.println(" Nenhum Servidor tradução disponivel! <DNS> ");
