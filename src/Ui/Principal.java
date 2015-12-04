@@ -2,30 +2,20 @@ package Ui;
 
 import java.util.Scanner;
 
-import Redes.Procura_Serv;
-import Redes.Servidor_DNS;
+import Negocios.Controlador;
 
 public class Principal {	
 	
 	public static void main(String[] args) {
 		
-			try {
-			Servidor_DNS servidorDNS = new Servidor_DNS();
-			servidorDNS.start();
-			Procura_Serv procuraServ = new Procura_Serv();
-			procuraServ.start();
-			
-			
-			System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
-			new Scanner(System.in).nextLine();
-			
-			System.out.println("Encerrando Servidor DNS.");
-			servidorDNS.stop();
-			procuraServ.stop();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ControlDNS control = new Controlador();
+		
+		control.inicializar();
+		
+		System.out.println("PRESSIONE <ENTER> para encerrar o Servidor DNS.");
+		new Scanner(System.in).nextLine();
+				
+		control.parar();
 		
 	}
 	

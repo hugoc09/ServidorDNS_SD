@@ -107,7 +107,8 @@ public class Procura_Serv implements Runnable{
 		pkgRecebido = new DatagramPacket(recebeDados, recebeDados.length);
 	 	
 		try {
-			procServSocket.setSoTimeout(3000);
+			procServSocket.setSoTimeout(6000); //botei mais tempo de espera
+												// para tirar o sleep
 		 	
 		 	procServSocket.receive(pkgRecebido); 
 		 	
@@ -117,15 +118,15 @@ public class Procura_Serv implements Runnable{
 		 	cont++; 	
 		} catch (SocketTimeoutException g) {
 			cont = 0;
-			try {
-				System.out.println("Dormindo...");
-				Thread.sleep(5000);
+			//try {
+				//System.out.println("Dormindo...");
+				//Thread.sleep(5000);
 				if(executando){
 				enviarMsg();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			//} catch (Exception e) {
+			//	e.printStackTrace();
+			//}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
