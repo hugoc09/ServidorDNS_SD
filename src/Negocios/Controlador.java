@@ -32,8 +32,8 @@ public class Controlador implements ControlDNS{
 		try {
 			
 			System.out.println("Encerrando Servidor DNS...");
-			servidorDNS.stop();
 			procuraServ.stop();
+			servidorDNS.stop();
 			System.out.println("Servidor DNS encerrado!");
 			
 		} catch (Exception e) {
