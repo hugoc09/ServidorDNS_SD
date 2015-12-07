@@ -117,7 +117,9 @@ public class Procura_Serv implements Runnable{
 		 	
 		 	cont++; 	
 		} catch (SocketTimeoutException g) {
-			cont = 0;
+			
+			Servidor_DNS.ips.clear();
+			cont = 0; //Acho q zerar aqui n é mais necessario
 			//try {
 				//System.out.println("Dormindo...");
 				//Thread.sleep(5000);
