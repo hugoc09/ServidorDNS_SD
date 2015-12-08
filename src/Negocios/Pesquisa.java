@@ -18,14 +18,13 @@ public class Pesquisa implements Control{
 
 	public void pegarIp(IP a, int cont) {
 	 	
-		if(cont == 0){
-			Servidor_DNS.ips.clear();
-		}
+		//if(cont == 0){
+			//Servidor_DNS.ips.clear();
+		//}
 		
-	 	System.out.println(a.getIp() + "." + a.getPorta());
+	 	System.out.println(a.getIp() + ":" + a.getPorta());
 	 	Servidor_DNS.ips.add(a);
-		
-		
+			
 	}
 	
 }

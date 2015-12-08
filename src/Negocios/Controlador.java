@@ -18,7 +18,6 @@ public class Controlador implements ControlDNS{
 			servidorDNS.start();
 			procuraServ = new Procura_Serv();
 			procuraServ.start();
-			System.out.println("Servidor DNS inicializado!");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

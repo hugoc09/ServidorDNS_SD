@@ -38,7 +38,7 @@ public class Guarda_Serv implements Runnable{
 			
 		inicializado = false;
 		cont = 0;
-			//executando = false;
+		//executando = false;
 			
 		thread = null;
 	}

@@ -77,8 +77,7 @@ public class Servidor_DNS implements Runnable{
 	@Override
 	public void run() {
 		
-	System.out.println("Aguardadando pedido de conexao...");
-	
+	System.out.println("Aguardadando Pedido de Conexao...");
 	
 		while(executando){
 			
@@ -89,7 +88,7 @@ public class Servidor_DNS implements Runnable{
 	
 			servidorSocket.setSoTimeout(6000);	
 			servidorSocket.receive(pkgRecebido);
-			System.out.println("Pedido recebido.");
+			System.out.println("< Pedido Recebido >");
 			
 			Resposta_DNS resposta_DNS = new Resposta_DNS(servidorSocket, pkgRecebido);
 			resposta_DNS.start();
@@ -102,9 +101,7 @@ public class Servidor_DNS implements Runnable{
 			}
 			
 		}
-		
 		close();
 		
 	}
-
 }
