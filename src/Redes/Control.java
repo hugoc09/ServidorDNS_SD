@@ -5,6 +5,6 @@ import Entidades.IP;
 public interface Control {
 	
 	public String enviarIp();
-	public void pegarIp(IP a, int cont);
+	public void pegarIp(IP a);
 
 }

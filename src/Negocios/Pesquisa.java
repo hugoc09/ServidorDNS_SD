@@ -16,11 +16,7 @@ public class Pesquisa implements Control{
 		return null;
 	}
 
-	public void pegarIp(IP a, int cont) {
-	 	
-		//if(cont == 0){
-			//Servidor_DNS.ips.clear();
-		//}
+	public void pegarIp(IP a) {
 		
 	 	System.out.println(a.getIp() + ":" + a.getPorta());
 	 	Servidor_DNS.ips.add(a);

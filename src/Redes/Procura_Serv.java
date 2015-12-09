@@ -108,18 +108,16 @@ public class Procura_Serv implements Runnable{
 	 	
 		try {
 			procServSocket.setSoTimeout(6000); //botei mais tempo de espera
-												// para tirar o sleep
-		 	
+												// para tirar o sleep	
 		 	procServSocket.receive(pkgRecebido); 
 		 	
-		 	Guarda_Serv guarda_Serv = new Guarda_Serv(pkgRecebido, cont);
+		 	Guarda_Serv guarda_Serv = new Guarda_Serv(pkgRecebido);
 		 	guarda_Serv.start();
 		 	
 		 	cont++; 	
 		} catch (SocketTimeoutException g) {
 			
 			Servidor_DNS.ips.clear();
-			//cont = 0; //Acho q zerar aqui n é mais necessario
 			
 				if(executando){
 				enviarMsg();

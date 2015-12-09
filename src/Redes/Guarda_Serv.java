@@ -11,18 +11,16 @@ public class Guarda_Serv implements Runnable{
 	private Control controle;
 
 	private boolean inicializado;
-	private int cont;
 		//private boolean executando;
 
 	private Thread  thread;
 		
-	public Guarda_Serv(DatagramPacket pkgRecebidoParamentro, int contParametro) {
+	public Guarda_Serv(DatagramPacket pkgRecebidoParamentro) {
 		this.pkgRecebido = pkgRecebidoParamentro;
 		this.controle = new Pesquisa();
 			
-		cont = contParametro;
 		inicializado = false;
-			//executando =false;
+		//executando =false;
 			
 		open();
 	}
@@ -37,7 +35,6 @@ public class Guarda_Serv implements Runnable{
 		controle = null;
 			
 		inicializado = false;
-		cont = 0;
 		//executando = false;
 			
 		thread = null;
@@ -67,7 +64,7 @@ public class Guarda_Serv implements Runnable{
 			
 		try {
 			IP a = new IP(pkgRecebido.getAddress(), pkgRecebido.getPort());
-		 	controle.pegarIp(a, cont);	
+		 	controle.pegarIp(a);	
 		 	
 		} catch (Exception e) {
 			e.printStackTrace();
