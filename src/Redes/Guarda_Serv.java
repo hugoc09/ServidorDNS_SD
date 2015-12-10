@@ -11,7 +11,6 @@ public class Guarda_Serv implements Runnable{
 	private Control controle;
 
 	private boolean inicializado;
-		//private boolean executando;
 
 	private Thread  thread;
 		
@@ -20,7 +19,6 @@ public class Guarda_Serv implements Runnable{
 		this.controle = new Pesquisa();
 			
 		inicializado = false;
-		//executando =false;
 			
 		open();
 	}
@@ -35,24 +33,20 @@ public class Guarda_Serv implements Runnable{
 		controle = null;
 			
 		inicializado = false;
-		//executando = false;
 			
 		thread = null;
 	}
 		
 	public void start() {
-		if(!inicializado){  //executando
+		if(!inicializado){ 
 			return;
 		}
 			
-			//executando = true;
 		thread = new Thread(this);
 		thread.start();
 	}
 		
 	public void stop() throws Exception {
-			
-		//executando = false;
 			
 		if(thread!=null){
 		thread.join();

@@ -99,7 +99,6 @@ public class Procura_Serv implements Runnable{
 	
 	@Override
 	public void run() {
-		int cont=0;
 		
 		while(executando){
 		
@@ -114,7 +113,7 @@ public class Procura_Serv implements Runnable{
 		 	Guarda_Serv guarda_Serv = new Guarda_Serv(pkgRecebido);
 		 	guarda_Serv.start();
 		 	
-		 	cont++; 	
+		 	
 		} catch (SocketTimeoutException g) {
 			
 			Servidor_DNS.ips.clear();
